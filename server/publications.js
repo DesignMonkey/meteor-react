@@ -1,4 +1,4 @@
 
 Meteor.publish('nav', function() {
-	return Navigation.find();
+	return Pages.find();
 })

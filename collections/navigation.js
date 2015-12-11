@@ -1,1 +1,1 @@
-Navigation = new Mongo.Collection('navigation');
+Pages = new Mongo.Collection('navigation');

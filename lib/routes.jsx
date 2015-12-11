@@ -4,8 +4,24 @@ FlowRouter.route("/", {
   },
   action: function() {
 		ReactLayout.render(MainLayout, {
-		  content: <Frontpage id='' />
+		  content: <Frontpage />
 		})
+  }
+});
+
+FlowRouter.route("/about", {
+  action: function() {
+    ReactLayout.render(MainLayout, {
+      content: <Dragging headline="about" />
+    })
+  }
+});
+
+FlowRouter.route("/process", {
+  action: function() {
+    ReactLayout.render(MainLayout, {
+      content: <Dragging headline="Process" />
+    })
   }
 });
 
@@ -16,7 +32,7 @@ FlowRouter.route('/page/:_id', {
   },
   action: function(params) {
   	console.log(params._id)
-  	let doc = Navigation.findOne(params._id);
+  	let doc = Pages.findOne(params._id);
   	console.log(doc)
 		ReactLayout.render(MainLayout, {
 		  content: <Dragging {...doc} />

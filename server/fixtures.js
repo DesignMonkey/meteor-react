@@ -1,7 +1,7 @@
-if(Navigation.find().count() === 0) {
-	Navigation.insert({ name: 'Forside', headline: 'Welcome' });
-	Navigation.insert({ name: 'About', headline: 'About Nordlys' });
-	Navigation.insert({ name: 'Work', headline: 'Our Cases' });
-	Navigation.insert({ name: 'Process', headline: 'Our process' });
-	Navigation.insert({ name: 'Contact', headline: 'Contact Nordlys' });
+if(Pages.find().count() === 0) {
+	Pages.insert({ name: 'Forside', headline: 'Welcome' });
+	Pages.insert({ name: 'About', headline: 'About Nordlys' });
+	Pages.insert({ name: 'Work', headline: 'Our Cases' });
+	Pages.insert({ name: 'Process', headline: 'Our process' });
+	Pages.insert({ name: 'Contact', headline: 'Contact Nordlys' });
 }

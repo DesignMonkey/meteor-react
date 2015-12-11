@@ -1,28 +1,44 @@
 MainLayout = React.createClass({
-  // This mixin makes the getMeteorData method work
-  mixins: [ReactMeteorData],
 
-  // Loads items from the Tasks collection and puts them on this.data.tasks
-  getMeteorData() {
+  getDefaultProps() {
     return {
-      nav: Navigation.find({}).fetch()
-    }
+      pages: [
+        {
+          route: '/about',
+          siteName: 'Om Nordlys'
+        },
+        {
+          route: '/process',
+          siteName: 'Proces'
+        }
+
+      ]
+    };
+  },
+
+  isActiveRoute(route) {
+    console.log(FlowRouter.current().route, route);
+    return (FlowRouter.current().route.path == route.route) ? 'active' : '';
   },
 
   renderNavigation() {
-  	 return this.data.nav.map((navItem) => {
-      return <NavItem key={navItem._id} _id={navItem._id} name={navItem.name} />;
-    });
+  	return (
+      <nav className="ui large secondary pointing menu">
+        {
+          this.props.pages.map((item, index) => {
+            return <a key={index} className={'item ' + this.isActiveRoute(item)} href={item.route}>{item.siteName}</a>
+          })
+        }
+
+      </nav>
+    )
   },
+
 
   render() {
     return <div>
       <header>
-        <nav>
-        	<ul>
-        		{this.renderNavigation()}
-        	</ul>
-        </nav>
+        {this.renderNavigation()}
       </header>
       <main>
         {this.props.content}
@@ -36,10 +52,10 @@ MainLayout = React.createClass({
 
 NavItem = React.createClass({
 	render() {
+		let curId = FlowRouter.getParam('_id');
 		return (
-			<li className="nav-item">
-				<a href={'/page/' + this.props._id}>{this.props.name}</a>
-			</li>
+			<a className={'item' + (this.props._id == curId ? ' active' : '') } href={'/page/' + this.props._id}>{this.props.name}</a>
 		);
 	}
 });
+
